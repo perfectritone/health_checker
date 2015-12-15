@@ -1,0 +1,3 @@
+== README
+
+This application returns the status of the Litmus application
