@@ -13,4 +13,5 @@ end
 
 RspecApiDocumentation.configure do |config|
   config.format = :json
+  config.post_body_formatter = :json
 end
