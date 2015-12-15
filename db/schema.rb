@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215043002) do
+ActiveRecord::Schema.define(version: 20151215050803) do
 
   create_table "status_messages", force: :cascade do |t|
-    t.integer "status_id"
-    t.string  "message"
+    t.integer  "status_id"
+    t.string   "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "status_messages", ["status_id"], name: "index_status_messages_on_status_id"
 
   create_table "statuses", force: :cascade do |t|
-    t.boolean "status"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
