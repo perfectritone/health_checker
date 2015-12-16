@@ -22,6 +22,25 @@ describe StatusMessage do
       expect(described_class.last_ten.count).to eq number_of_messages
     end
 
-    it 'should return the most recent ten messages after eleven messages are added'
+    it 'should return the most recent ten messages after eleven messages are added' do
+      number_of_messages = 11
+
+      number_of_messages.times do |i|
+        described_class.create(message: "Test ##{i}")
+      end
+
+      expect(described_class.last_ten.count).to eq 10
+    end
+ 
+    it 'should order the messages from most recent' do
+      number_of_messages = 11
+
+      number_of_messages.times do |i|
+        described_class.create(message: "Test ##{i}")
+      end
+
+      expect(described_class.last_ten).to include("Test #2")
+      expect(described_class.last_ten).not_to include("Test #0")
+    end
   end
 end
