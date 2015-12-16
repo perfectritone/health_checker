@@ -1,3 +1,5 @@
 == README
 
-This application returns the status of the Litmus application
+This application returns the status of the Litmus application.
+
+It is an exercise at writing a full Rails application in three hours.
