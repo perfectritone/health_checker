@@ -2,7 +2,7 @@ class StatusController < ApplicationController
 
   def update
     status = status_to_boolean(params[:status])
-    status_updater = StatusUpdater.new(status: status)
+    status_updater = StatusUpdater.new(status: status, status_message: params[:status_message])
 
     status_updater.update
 
