@@ -17,5 +17,11 @@ resource 'Litmus Status' do
     example_request "Status is true after 'UP' is sent as the status" do
       expect(response_status).to eq 200
     end
+
+    example "A 422 is returned when the status is invalid" do
+      do_request status: "RUNNING"
+
+      expect(response_status).to eq 422
+    end
   end
 end
