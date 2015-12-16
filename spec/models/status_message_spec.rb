@@ -39,8 +39,10 @@ describe StatusMessage do
         described_class.create(message: "Test ##{i}")
       end
 
-      expect(described_class.last_ten).to include("Test #2")
-      expect(described_class.last_ten).not_to include("Test #0")
+      last_ten_messages = described_class.last_ten.map(&:message)
+
+      expect(last_ten_messages).to include("Test #2")
+      expect(last_ten_messages).not_to include("Test #0")
     end
   end
 end
