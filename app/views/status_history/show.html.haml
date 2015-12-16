@@ -1,8 +1,9 @@
 .current_status
-  %strong Current Status
+  %strong Current Status:
   #{@current_status}
 
 .status_message_history
   %strong Status Message History
   - @status_message_history.each do |status_message|
-    #{status_message}
+    %p
+      #{status_message}
