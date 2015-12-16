@@ -31,7 +31,7 @@ describe StatusMessage do
 
       expect(described_class.last_ten.count).to eq 10
     end
- 
+
     it 'should order the messages from most recent' do
       number_of_messages = 11
 

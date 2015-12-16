@@ -9,7 +9,9 @@ class StatusHistoryController < ApplicationController
 
   def last_ten_status_messages
     StatusMessage.last_ten.map do |status_message|
-      OpenStruct.new(message: status_message.message, timestamp: status_message.created_at)
+      OpenStruct.new(
+        message: status_message.message,
+        timestamp: status_message.created_at)
     end
   end
 end

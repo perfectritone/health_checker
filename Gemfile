@@ -51,3 +51,5 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'rspec_api_documentation'
 end
+
+gem 'rubocop'
