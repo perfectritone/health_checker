@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'rspec_api_documentation/dsl'
 
 resource "Litmus Status" do
@@ -8,22 +8,14 @@ resource "Litmus Status" do
 
   post "/status" do
 
-#    parameter :status, "Should be either \"UP\" or \"Down\""
-#    parameter :status_message, "A message to go along with the status"
+    parameter :status, "Should be either \"UP\" or \"Down\""
+    parameter :status_message, "A message to go along with the status"
 
-    example_request "Status is true after \"UP\" is sent as the status", status: "UP" do
-      expect(Status.current).to eq true
-    end
+    let(:status) { "UP" }
+    let(:status_message) { "Everything's looking up!" }
 
-    example_request "Status is false after \"DOWN\" is sent as the status", status: "DOWN" do
-      expect(Status.current).to eq false
-    end
-
-    example_request "Error when an unknown status is sent", status: "Hmmmm" do
-      response = JSON.parse(response_body)
-
-      expect(response['success']).to eq false
-      expect(response['errors']).to_not be_nil
+    example_request "Status is true after \"UP\" is sent as the status" do
+      expect(response_status).to eq 200
     end
   end
 end

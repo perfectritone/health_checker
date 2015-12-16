@@ -1,6 +1,3 @@
-require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
-
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -9,9 +6,4 @@ RSpec.configure do |config|
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end
-end
-
-RspecApiDocumentation.configure do |config|
-  config.format = :json
-  config.post_body_formatter = :json
 end

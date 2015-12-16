@@ -1,19 +1,26 @@
 class StatusController < ApplicationController
 
   def update
-    new_status = case params[:status]
-                 when "UP"
-                   true
-                 when "DOWN"
-                   false
-                 end
+    status = status_to_boolean(params[:status])
+    status_updater = StatusUpdater.new(status: status)
 
-    unless new_status.nil?
-      Status.create(status: new_status)
+    status_updater.update
 
-      render json: { success: true }
-    else
-      render json: { success: false, errors: ["Status must be either UP or DOWN"] }
-    end
+    render nothing: true
   end
+
+  private
+
+    def status_to_boolean(status_string)
+      case status_string
+      when "UP"
+        true
+      when "DOWN"
+        false
+      end
+    end
+
+    def status_boolean_to_string(status_boolean)
+      status_boolean ? "UP" : "DOWN"
+    end
 end
