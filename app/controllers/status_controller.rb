@@ -1,17 +1,19 @@
 class StatusController < ApplicationController
 
   def update
-    if !params[:status].nil? && status_to_boolean(params[:status]).nil?
-      render json: { errors: ["The status must be either 'UP' or 'DOWN'"]}, status: :unprocessable_entity
+    raw_status = params[:status]
+    status = status_to_boolean(raw_status)
+
+    if !raw_status.nil? && status.nil?
+      errors = ["The status must be either 'UP' or 'DOWN'"]
+
+      render json: { errors: errors }, status: :unprocessable_entity
       return
     end
 
-    status = status_to_boolean(params[:status])
-    status_updater = StatusUpdater.new(
+    StatusUpdater.new(
       status: status,
-      status_message: params[:status_message])
-
-    status_updater.update
+      status_message: params[:status_message]).update
 
     render nothing: true
   end
